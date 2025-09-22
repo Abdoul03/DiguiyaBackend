@@ -17,6 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Utilisateurs implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,7 +46,6 @@ public class Utilisateurs implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    @Column(nullable = false)
     @OneToOne(cascade = CascadeType.ALL)
     private RoleType role;
 
