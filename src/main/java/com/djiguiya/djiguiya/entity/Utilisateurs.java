@@ -29,10 +29,13 @@ public class Utilisateurs implements UserDetails {
     @Column(nullable = false)
     private String prenom;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
+    private String username;
+
+    @Column(unique = true)
     private String telephone;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
     private boolean actif = false;
@@ -42,8 +45,6 @@ public class Utilisateurs implements UserDetails {
     @Column(nullable = false)
     private String motDePasse;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private Genre genre;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -61,7 +62,7 @@ public class Utilisateurs implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.username;
     }
 
     @Override
