@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity
 public class Bulletin {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String trimestre;

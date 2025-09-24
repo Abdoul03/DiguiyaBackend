@@ -20,7 +20,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Utilisateurs implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id;
 
     @Column(nullable = false)
@@ -29,7 +29,7 @@ public class Utilisateurs implements UserDetails {
     @Column(nullable = false)
     private String prenom;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(unique = true)
@@ -47,7 +47,9 @@ public class Utilisateurs implements UserDetails {
 
     private Genre genre;
 
+
     @OneToOne(cascade = CascadeType.ALL)
+    @Enumerated(EnumType.STRING)
     private RoleType role;
 
     @Override

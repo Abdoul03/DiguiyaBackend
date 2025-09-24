@@ -2,8 +2,12 @@ package com.djiguiya.djiguiya.service;
 
 import com.djiguiya.djiguiya.dto.UtilisateurDto;
 import com.djiguiya.djiguiya.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -20,4 +24,5 @@ public class UtilisateurService {
             throw new RuntimeException("Votre email est invalide");
         }
     }
+
 }

@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 public class Besoin {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String nom;

@@ -1,10 +1,7 @@
 package com.djiguiya.djiguiya.entity;
 
 import com.djiguiya.djiguiya.entity.enums.Role;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +14,9 @@ import lombok.Setter;
 @Entity
 public class RoleType {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id;
 
+    @Enumerated(EnumType.STRING)
     private Role libelle;
 }

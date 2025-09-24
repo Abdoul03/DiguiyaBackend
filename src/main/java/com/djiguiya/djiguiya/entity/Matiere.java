@@ -13,7 +13,7 @@ import lombok.Setter;
 @Entity
 public class Matiere {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @Column(nullable = false)

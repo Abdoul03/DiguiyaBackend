@@ -1,8 +1,8 @@
 package com.djiguiya.djiguiya.entity.enums;
 
 public enum Role {
-    PARRAIN,
-    PARENT,
-    ASSOCIATION,
-    ADMIN,
+    ROLE_PARRAIN,
+    ROLE_PARENT,
+    ROLE_ASSOCIATION,
+    ROLE_ADMIN,
 }

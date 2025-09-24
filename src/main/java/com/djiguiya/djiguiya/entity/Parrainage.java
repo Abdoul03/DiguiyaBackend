@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 public class Parrainage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(nullable = false)
     private Date date;
