@@ -46,10 +46,10 @@ public class JwtService {
     }
 
 
-    private String generateAccessToken( Long userId, Role userRoles){
+    public String generateAccessToken( Long userId, Role userRoles){
         return generateToken(userId, TokenType.ACCESS_TOKEN, accessTokenValidity, userRoles);
     }
-    private String generateRefreshToken(Long userId, Role userRoles){
+    public String generateRefreshToken(Long userId, Role userRoles){
         return generateToken(userId, TokenType.REFRESH_TOKEN, refreshTokenValidity, userRoles);
     }
 

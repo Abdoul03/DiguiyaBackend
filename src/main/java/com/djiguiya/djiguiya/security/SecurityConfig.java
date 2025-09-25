@@ -32,17 +32,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, CorsConfigurationSource corsConfigurationSource) throws Exception {
         return httpSecurity
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors((corsCustomizer -> corsCustomizer.configurationSource(corsConfigurationSource)))
                 .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                 auth -> {
-                    auth.requestMatchers(POST, "/auth/**").permitAll()
-                            .requestMatchers( "users/me").permitAll()
+                    auth.requestMatchers("/auth/**").permitAll()
+                            .requestMatchers( "/users/me").permitAll()
                             .requestMatchers("/admin").hasRole("ADMIN")
-                            .requestMatchers("/parent").hasRole("PARENT")
-                            .requestMatchers("/association").hasRole("ASSOCIATION")
-                            .requestMatchers("/parrain").hasRole("PARRAIN")
+                            .requestMatchers("/parent/**").hasRole("PARENT")
+                            .requestMatchers("/association/**").hasRole("ASSOCIATION")
+                            .requestMatchers("/parrain/**").hasRole("PARRAIN")
                             .anyRequest().authenticated();
                 }).exceptionHandling(exception ->{
                     exception.authenticationEntryPoint(jwtEntryPoint).accessDeniedHandler(jwtAccessDeniedHandler);
