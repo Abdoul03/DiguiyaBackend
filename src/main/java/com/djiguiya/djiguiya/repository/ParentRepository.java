@@ -1,7 +1,8 @@
 package com.djiguiya.djiguiya.repository;
 
 import com.djiguiya.djiguiya.entity.Parent;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ParentRepository extends CrudRepository<Parent, Integer> {
+
+public interface ParentRepository extends JpaRepository<Parent, Integer> {
 }

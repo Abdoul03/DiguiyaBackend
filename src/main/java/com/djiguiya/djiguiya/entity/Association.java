@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -24,5 +27,9 @@ public class Association {
     private String email;
     @Column(nullable = false)
     private String telephone;
+
+    @OneToMany(mappedBy = "association", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Enfant> enfants = new ArrayList<>();
+
 
 }

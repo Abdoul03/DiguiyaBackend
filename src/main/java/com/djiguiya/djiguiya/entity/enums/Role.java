@@ -5,4 +5,5 @@ public enum Role {
     ROLE_PARENT,
     ROLE_ASSOCIATION,
     ROLE_ADMIN,
+    ROLE_child,
 }

@@ -14,4 +14,8 @@ import lombok.Setter;
 public class Enfant extends Utilisateurs{
     @Column(nullable = false)
     private String classe;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "association_id", nullable = false)
+    private Association association;
 }

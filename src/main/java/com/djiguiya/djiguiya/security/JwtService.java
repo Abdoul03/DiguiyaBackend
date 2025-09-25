@@ -26,7 +26,6 @@ public class JwtService {
     @Getter
     private final long refreshTokenValidity = 30L * 24L * 60L * 60L * 1000L;
 
-
     @PostConstruct
     void init() {
         this.secretKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(jwtSecret.getBytes(StandardCharsets.UTF_8)));
