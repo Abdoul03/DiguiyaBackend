@@ -41,6 +41,7 @@ public class SecurityConfig {
                     auth.requestMatchers("/auth/**").permitAll()
                             .requestMatchers( "/users/me").permitAll()
                             .requestMatchers("/admin").hasRole("ADMIN")
+                            .requestMatchers("/utilisateur").hasRole("ADMIN")
                             .requestMatchers("/parent/**").hasRole("PARENT")
                             .requestMatchers("/association/**").hasRole("ASSOCIATION")
                             .requestMatchers("/parrain/**").hasRole("PARRAIN")

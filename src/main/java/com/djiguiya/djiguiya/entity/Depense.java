@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,5 +26,17 @@ public class Depense {
     private int Montant;
     @Column(nullable = false)
     private Justificatif justificatif;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "besoin_depense",
+            joinColumns = @JoinColumn(name = "depense_id"),
+            inverseJoinColumns = @JoinColumn(name = "besoin_id")
+    )
+    private Set<Besoin> besoins;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "association_id", nullable = false)
+    private Association association;
 
 }

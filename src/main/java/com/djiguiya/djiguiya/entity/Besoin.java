@@ -1,13 +1,13 @@
 package com.djiguiya.djiguiya.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +22,10 @@ public class Besoin {
     private String nom;
     private String description;
     private int montant_necessaire;
+
+    @ManyToMany(mappedBy = "besoins",fetch = FetchType.LAZY)
+    private List<Enfant> enfants;
+
+    @ManyToMany(mappedBy = "besoins", fetch = FetchType.LAZY)
+    private List<Depense> depenses;
 }

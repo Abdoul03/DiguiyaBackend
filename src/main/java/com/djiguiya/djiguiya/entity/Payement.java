@@ -24,4 +24,8 @@ public class Payement {
     private PayementMethode methodeDePayement;
     @Column(nullable = false)
     private Date date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parrain_id", nullable = false)
+    private Parrain parrain;
 }

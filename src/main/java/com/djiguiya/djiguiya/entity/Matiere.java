@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -24,4 +26,7 @@ public class Matiere {
     private String observation;
 
     private int coef;
+
+    @ManyToMany(mappedBy = "matiers", fetch = FetchType.LAZY)
+    private Set<Bulletin> bulletins;
 }

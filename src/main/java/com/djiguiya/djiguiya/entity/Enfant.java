@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -22,7 +25,18 @@ public class Enfant extends Utilisateurs{
     @JoinColumn(name = "association_id", nullable = false)
     private Association association;
 
-    /*public ChildResponseDTO  toResponse(){
-        return new ChildResponseDTO(getId(),getNom(),getPrenom(),getUsername(),getClasse(),getAge(),getTelephone(),getEmail(),getGenre(),getRole(), getAssociation().getId());
-    }*/
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Parrainage> parrainage = new HashSet<>();
+
+    @ManyToMany(mappedBy = "enfants", fetch = FetchType.LAZY)
+    private Set<Parent> parent;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "enfant_besoin",
+            joinColumns = @JoinColumn(name = "enfant_Id"),
+            inverseJoinColumns = @JoinColumn(name = "besoin_id")
+    )
+    private Set<Besoin> besoins;
+
 }
