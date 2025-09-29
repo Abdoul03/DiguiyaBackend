@@ -8,6 +8,8 @@ import com.djiguiya.djiguiya.entity.enums.Role;
 import com.djiguiya.djiguiya.repository.ParentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +41,13 @@ public class ParentService {
         return UtilisateurMapper.toDTO(parent);
     }
     //Upadete parent
-    public UtilisateurResponseDTO updateParent(long parentId, UtilisateurRegisteurDto user){
+    public UtilisateurResponseDTO updateParent(UtilisateurRegisteurDto user){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long parentId = Long.valueOf(authentication.getPrincipal().toString());
+
         Parent parent = parentRepository.findById(parentId).orElseThrow(()->new EntityNotFoundException("Parent non trouve"));
+
         parent.setNom(user.getNom());
         parent.setPrenom(user.getPrenom());
         parent.setEmail(user.getEmail());

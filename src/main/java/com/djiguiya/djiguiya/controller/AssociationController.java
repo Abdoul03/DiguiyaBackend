@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -42,15 +43,23 @@ public class AssociationController {
     public boolean deleteAssociation(@PathVariable int associationId){
         return associationService.deleteAssociation(associationId);
     }
+
     // ajouter un enfant
     @PostMapping("/enfant")
-    public ResponseEntity<ChildResponseDTO> addChild(
-            @RequestBody ChildRegisteurDTO enfant,
-            @RequestHeader("Authorization") String authHeader
-    ) {
-        // Extraire le token du header "Bearer ..."
-        String token = authHeader.replace("Bearer ", "");
+    public ResponseEntity<ChildResponseDTO> addChild(@RequestBody ChildRegisteurDTO enfant) {
+        return ResponseEntity.ok(enfantService.createChild(enfant));
+    }
 
-        return ResponseEntity.ok(enfantService.createChild(token,enfant));
+    //update Child
+    @PutMapping("/enfant/{childId}")
+    public ResponseEntity<ChildResponseDTO> updateChild(
+            @PathVariable long childId, @RequestBody ChildRegisteurDTO enfant) throws AccessDeniedException {
+        return ResponseEntity.ok(enfantService.updateChild(childId, enfant));
+    }
+
+    //Delete child
+    @DeleteMapping("/enfant/{childId}")
+    public void deleteChild (@PathVariable long childId) throws Exception {
+        enfantService.deleteChild(childId);
     }
 }

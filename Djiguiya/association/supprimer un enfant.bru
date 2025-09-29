@@ -1,0 +1,19 @@
+meta {
+  name: supprimer un enfant
+  type: http
+  seq: 3
+}
+
+delete {
+  url: http://localhost:8180/api/association/enfant/3
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidHlwZSI6IkFDQ0VTU19UT0tFTiIsInJvbGUiOiJST0xFX0FTU09DSUFUSU9OIiwiaWF0IjoxNzU5MTYxMjg5LCJleHAiOjE3NTkxNjE4ODl9.vc7aIFnl_0X1R7RD1VV-uxFWMebEF_jVeCaCdDlua0w
+}
+
+settings {
+  encodeUrl: true
+}

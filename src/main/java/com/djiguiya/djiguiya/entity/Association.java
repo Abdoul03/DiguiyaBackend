@@ -50,8 +50,4 @@ public class Association {
     @OneToMany(mappedBy = "association", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Depense> depenses = new HashSet<>();
 
-    @OneToMany(mappedBy = "association", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Bulletin> bulletins = new HashSet<>();
-
-
 }

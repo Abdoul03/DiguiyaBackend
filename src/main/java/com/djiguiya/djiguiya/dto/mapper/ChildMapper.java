@@ -35,8 +35,8 @@ public class ChildMapper {
         child.setClasse(creatChild.classe());
         child.setPhotoUrl(creatChild.photoUrl());
         child.setUsername(creatChild.username());
-        child.setBesoins(creatChild.besoin());
-        child.setParent(creatChild.parents());
+        child.setBesoins(child.getBesoins());
+        child.setParent(child.getParent());
         return child;
     }
 }
