@@ -1,0 +1,22 @@
+meta {
+  name: Authentification association
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8180/api/auth/login/association
+  body: json
+  auth: bearer
+}
+
+body:json {
+  {
+    "username": "sos.village",
+    "motDePasse": "village des enfants"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,22 @@
+meta {
+  name: Auth admin
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8180/api/auth/login
+  body: json
+  auth: bearer
+}
+
+body:json {
+  {
+    "username": "admin",
+    "motDePasse": "password123"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Utilisateur
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8180/api/utilisateur
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidHlwZSI6IkFDQ0VTU19UT0tFTiIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNzU5MDA1NDczLCJleHAiOjE3NTkwMDYwNzN9.mM_3k71E89V0zmH2pnku5_f0QND_V3gRJUxnZlYd9wc
+}
+
+settings {
+  encodeUrl: true
+}

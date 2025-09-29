@@ -1,0 +1,26 @@
+meta {
+  name: Creer une association
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8180/api/auth/register/association
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+   "nom": "SOS village d'enfant",
+    "address": "Niamana",
+    "telephone": "70000001",
+    "email": "sos.village_@enfant.com",
+    "username":"sos.village",
+    "motDePasse":"village des enfants"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

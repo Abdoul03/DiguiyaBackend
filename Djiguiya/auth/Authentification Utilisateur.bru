@@ -1,0 +1,22 @@
+meta {
+  name: Authentification Utilisateur
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8180/api/auth/login
+  body: json
+  auth: bearer
+}
+
+body:json {
+  {
+    "username": "Abdoul03",
+    "motDePasse": "MotDePasseSecurise123"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

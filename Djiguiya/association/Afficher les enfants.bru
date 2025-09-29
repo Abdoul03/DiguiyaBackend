@@ -1,0 +1,15 @@
+meta {
+  name: Afficher les enfants
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8180/api/association
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

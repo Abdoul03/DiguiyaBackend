@@ -1,0 +1,27 @@
+meta {
+  name: Creer un parrain
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8180/api/auth/register/sponsor
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nom": "Samaké",
+    "prenom": "Abdoul Ibrahima",
+    "username": "Abdoul03",
+    "telephone": "71267813",
+    "email": "samabdoul03@gmail.com",
+    "motDePasse": "MotDePasseSecurise123",
+    "genre": "HOMME"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

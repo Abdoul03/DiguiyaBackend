@@ -1,0 +1,19 @@
+meta {
+  name: afficher tous les Parrains
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8180/api/parrain
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwidHlwZSI6IkFDQ0VTU19UT0tFTiIsInJvbGUiOiJST0xFX1BBUlJBSU4iLCJpYXQiOjE3NTkwMDQ0MTAsImV4cCI6MTc1OTAwNTAxMH0.lMNRcKZOlNX-mSS4vaTQR1Jkr1fpVL542eLRUr8IUr4
+}
+
+settings {
+  encodeUrl: true
+}
