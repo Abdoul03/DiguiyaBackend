@@ -8,6 +8,7 @@ import com.djiguiya.djiguiya.dto.responseDto.AssociationResponse;
 import com.djiguiya.djiguiya.dto.responseDto.UtilisateurResponseDTO;
 import com.djiguiya.djiguiya.security.auth.AuthentificationService;
 import com.djiguiya.djiguiya.service.AssociationService;
+import com.djiguiya.djiguiya.service.ParentService;
 import com.djiguiya.djiguiya.service.ParrainService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class AuthController {
     private ParrainService parrainService;
     private AuthentificationService authentificationService;
     private AssociationService associationService;
+    private ParentService parentService;
 
     @PostMapping("/register/sponsor")
     public ResponseEntity<UtilisateurResponseDTO> createSponsor(
@@ -38,6 +40,12 @@ public class AuthController {
         return ResponseEntity.ok(
                 associationService.createAssociation(association)
         );
+    }
+
+    //create parent
+    @PostMapping("/register/parent")
+    public ResponseEntity<UtilisateurResponseDTO> createParent(UtilisateurRegisteurDto parent){
+        return ResponseEntity.ok(parentService.createAParent(parent));
     }
 
     @PostMapping("/login")

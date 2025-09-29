@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -113,6 +115,17 @@ public class EnfantService {
                 .orElseThrow(() -> new AccessDeniedException("Vous n'avez pas le droit de supprimer cet enfant"));
 
         enfantRepository.delete(enfant);
+    }
+
+    //Get association's child
+    public List<ChildResponseDTO> getAssoChild() throws AccessDeniedException {
+        // Récupérer l'ID de l'utilisateur courant (association) depuis SecurityContext
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long associationId = Long.valueOf(authentication.getPrincipal().toString());
+
+        List<Enfant> enfant = enfantRepository.findByAssociationId(associationId);
+
+        return enfant.stream().map(ChildMapper :: toResponse).toList();
     }
 
 }

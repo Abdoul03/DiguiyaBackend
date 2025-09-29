@@ -39,10 +39,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                 auth -> {
                     auth.requestMatchers("/auth/**").permitAll()
-                            .requestMatchers( "/users/me").permitAll()
-                            .requestMatchers("/admin").hasRole("ADMIN")
-                            .requestMatchers("/utilisateur").hasRole("ADMIN")
+                            .requestMatchers( "/users/me/**").permitAll()
+                            .requestMatchers("/admin/**").hasRole("ADMIN")
+                            .requestMatchers("/utilisateur/**").hasRole("ADMIN")
                             .requestMatchers("/parent/**").hasRole("PARENT")
+                            .requestMatchers("/enfant/**").hasRole("PARRAIN")
                             .requestMatchers("/association/**").hasRole("ASSOCIATION")
                             .requestMatchers("/parrain/**").hasRole("PARRAIN")
                             .anyRequest().authenticated();

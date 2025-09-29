@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:8180/api/association
+  url: http://localhost:8180/api/association/enfant
   body: json
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidHlwZSI6IkFDQ0VTU19UT0tFTiIsInJvbGUiOiJST0xFX0FTU09DSUFUSU9OIiwiaWF0IjoxNzU5MTY3NTQ2LCJleHAiOjE3NTkxNjgxNDZ9.vRbMgxm1NMukLE_XU61MPqGrW0ozBQdGDQwphlWVpEs
 }
 
 settings {

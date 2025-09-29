@@ -43,20 +43,22 @@ public class AssociationController {
     public boolean deleteAssociation(@PathVariable int associationId){
         return associationService.deleteAssociation(associationId);
     }
-
     // ajouter un enfant
     @PostMapping("/enfant")
     public ResponseEntity<ChildResponseDTO> addChild(@RequestBody ChildRegisteurDTO enfant) {
         return ResponseEntity.ok(enfantService.createChild(enfant));
     }
-
+    //get all child
+    @GetMapping("/enfant")
+    public ResponseEntity<List<ChildResponseDTO>> getAllChild () throws AccessDeniedException {
+        return ResponseEntity.ok(enfantService.getAssoChild());
+    }
     //update Child
     @PutMapping("/enfant/{childId}")
     public ResponseEntity<ChildResponseDTO> updateChild(
             @PathVariable long childId, @RequestBody ChildRegisteurDTO enfant) throws AccessDeniedException {
         return ResponseEntity.ok(enfantService.updateChild(childId, enfant));
     }
-
     //Delete child
     @DeleteMapping("/enfant/{childId}")
     public void deleteChild (@PathVariable long childId) throws Exception {
