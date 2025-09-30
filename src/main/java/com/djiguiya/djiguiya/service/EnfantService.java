@@ -8,7 +8,6 @@ import com.djiguiya.djiguiya.entity.Enfant;
 import com.djiguiya.djiguiya.entity.enums.Role;
 import com.djiguiya.djiguiya.repository.AssociationRepository;
 import com.djiguiya.djiguiya.repository.EnfantRepository;
-import com.djiguiya.djiguiya.security.JwtService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
