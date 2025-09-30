@@ -27,8 +27,9 @@ public class DocumentController {
         Document document = documentService.uploadFile(file,childId);
         return ResponseEntity.ok(document);
     }
+
     // Downloader by anyOne
-    @GetMapping("/{id}/enfant/{childId}")
+    @GetMapping("/download/{id}/enfant/{childId}")
     public ResponseEntity<Resource> downloadFile(@PathVariable long id, long childId) throws IOException {
         Resource resource = documentService.downloadFile(id, childId);
         // Récupérer le type MIME (PDF ou image)
@@ -39,8 +40,19 @@ public class DocumentController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
-    //Downloader by Association
 
+    //Downloader by Association
+    @GetMapping("/download/{id}")
+    public ResponseEntity<Resource> downloadAssociationFile(@PathVariable long id) throws IOException {
+        Resource resource = documentService.downloadFileByAssociation(id);
+        // Récupérer le type MIME (PDF ou image)
+        String contentType = Files.probeContentType(Paths.get(resource.getFile().getAbsolutePath()));
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
 
     // Récupérer les documents de l’association
     @GetMapping("/association")

@@ -83,6 +83,31 @@ public class DocumentService {
         return resource;
     }
 
+    public Resource downloadFileByAssociation(long documentId) throws IOException {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long associationId = Long.valueOf(authentication.getPrincipal().toString());
+
+        // Vérifier que le document appartient bien à l'enfant
+        Document document = documentRepository.findById(documentId)
+                .orElseThrow(() -> new EntityNotFoundException("Document introuvable"));
+
+        Association association = associationRepository.findById(associationId).orElseThrow(()-> new RuntimeException("Association introuvable"));
+
+        if (document.getAssociation() != association){
+            throw new AccessDeniedException("Vous n'avez pas le droit de télécharger ce document ");
+        }
+
+        Path filePath = Paths.get(document.getFilePath());
+        Resource resource = new UrlResource(filePath.toUri());
+
+        if (!resource.exists() || !resource.isReadable()) {
+            throw new RuntimeException("Impossible de lire le fichier");
+        }
+
+        return resource;
+    }
+
     public List<Document> getAssociationDocument(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Long associationId = Long.valueOf(authentication.getPrincipal().toString());
