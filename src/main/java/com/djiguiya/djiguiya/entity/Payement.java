@@ -28,4 +28,14 @@ public class Payement {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parrain_id", nullable = false)
     private Parrain parrain;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "enfant_id", nullable = false)
+    private Enfant enfant;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Parrainage parrainage;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Association association;
 }

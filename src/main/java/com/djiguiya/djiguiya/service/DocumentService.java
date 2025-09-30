@@ -16,20 +16,25 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
 
-@AllArgsConstructor
 @Service
 public class DocumentService {
-    private DocumentRepository documentRepository;
-    private AssociationRepository associationRepository;
-    private EnfantRepository enfantRepository;
+    private final DocumentRepository documentRepository;
+    private final AssociationRepository associationRepository;
+    private final EnfantRepository enfantRepository;
+    private final String uploadDir;
 
-    @Value("${upload.dir}")
-    private String uploadDir;
+    public DocumentService(DocumentRepository documentRepository, AssociationRepository associationRepository, EnfantRepository enfantRepository,
+                           @Value("${upload.dir}") String uploadDir)
+    {
+        this.documentRepository = documentRepository;
+        this.associationRepository = associationRepository;
+        this.enfantRepository = enfantRepository;
+        this.uploadDir = uploadDir;
+    }
 
     public Document uploadFile(MultipartFile file, long enfantId) throws IOException {
 

@@ -1,10 +1,8 @@
 package com.djiguiya.djiguiya.controller;
 
 import com.djiguiya.djiguiya.dto.requestDto.UtilisateurRegisteurDto;
-import com.djiguiya.djiguiya.dto.responseDto.AssociationResponse;
 import com.djiguiya.djiguiya.dto.responseDto.UtilisateurResponseDTO;
 import com.djiguiya.djiguiya.service.ParrainService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

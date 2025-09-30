@@ -1,24 +1,11 @@
 package com.djiguiya.djiguiya.controller;
 
 import com.djiguiya.djiguiya.dto.requestDto.AssociationRequest;
-import com.djiguiya.djiguiya.dto.requestDto.ChildRegisteurDTO;
-import com.djiguiya.djiguiya.dto.requestDto.UtilisateurRegisteurDto;
 import com.djiguiya.djiguiya.dto.responseDto.AssociationResponse;
-import com.djiguiya.djiguiya.dto.responseDto.ChildResponseDTO;
-import com.djiguiya.djiguiya.entity.Document;
 import com.djiguiya.djiguiya.service.AssociationService;
-import com.djiguiya.djiguiya.service.DocumentService;
-import com.djiguiya.djiguiya.service.EnfantService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @AllArgsConstructor

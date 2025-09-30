@@ -5,7 +5,6 @@ import com.djiguiya.djiguiya.dto.responseDto.ChildResponseDTO;
 import com.djiguiya.djiguiya.service.EnfantService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.AccessDeniedException;

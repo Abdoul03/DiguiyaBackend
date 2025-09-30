@@ -42,4 +42,7 @@ public class Enfant extends Utilisateurs{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "enfant")
     private Set<Document> documents;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Payement> payements;
+
 }

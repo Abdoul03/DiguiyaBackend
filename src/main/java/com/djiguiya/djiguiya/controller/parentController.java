@@ -2,7 +2,6 @@ package com.djiguiya.djiguiya.controller;
 
 import com.djiguiya.djiguiya.dto.requestDto.UtilisateurRegisteurDto;
 import com.djiguiya.djiguiya.dto.responseDto.UtilisateurResponseDTO;
-import com.djiguiya.djiguiya.repository.ParentRepository;
 import com.djiguiya.djiguiya.service.ParentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
