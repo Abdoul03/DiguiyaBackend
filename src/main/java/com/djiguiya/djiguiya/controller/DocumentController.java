@@ -3,11 +3,16 @@ package com.djiguiya.djiguiya.controller;
 import com.djiguiya.djiguiya.entity.Document;
 import com.djiguiya.djiguiya.service.DocumentService;
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,6 +27,20 @@ public class DocumentController {
         Document document = documentService.uploadFile(file,childId);
         return ResponseEntity.ok(document);
     }
+    // Downloader by anyOne
+    @GetMapping("/{id}/enfant/{childId}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable long id, long childId) throws IOException {
+        Resource resource = documentService.downloadFile(id, childId);
+        // Récupérer le type MIME (PDF ou image)
+        String contentType = Files.probeContentType(Paths.get(resource.getFile().getAbsolutePath()));
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
+    //Downloader by Association
+
 
     // Récupérer les documents de l’association
     @GetMapping("/association")

@@ -6,18 +6,19 @@ import com.djiguiya.djiguiya.entity.Enfant;
 import com.djiguiya.djiguiya.repository.AssociationRepository;
 import com.djiguiya.djiguiya.repository.DocumentRepository;
 import com.djiguiya.djiguiya.repository.EnfantRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.Doc;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -58,6 +59,28 @@ public class DocumentService {
         document.setEnfant(enfant);
 
         return documentRepository.save(document);
+    }
+
+
+    public Resource downloadFile(long documentId, long childId) throws IOException {
+        // Vérifier que le document appartient bien à l'enfant
+        Document document = documentRepository.findById(documentId)
+                .orElseThrow(() -> new EntityNotFoundException("Document introuvable"));
+
+        Enfant enfant = enfantRepository.findById(childId).orElseThrow(()-> new RuntimeException("Enfant introuvable"));
+
+        if (document.getEnfant() != enfant){
+            throw new AccessDeniedException("Ce document n'appartient a cet enfant ");
+        }
+
+        Path filePath = Paths.get(document.getFilePath());
+        Resource resource = new UrlResource(filePath.toUri());
+
+        if (!resource.exists() || !resource.isReadable()) {
+            throw new RuntimeException("Impossible de lire le fichier");
+        }
+
+        return resource;
     }
 
     public List<Document> getAssociationDocument(){
